@@ -8,6 +8,6 @@ Configurando VsCode
     Vá para Arquivo -> Preferencias -> Configurações: Abra o arquivo JSON no canto superior direito
         Defina o local do arquivo JDK, adiconando o código:
              "java.jdt.ls.java.home": "C:\\Program Files\\Java\\jdk-18.(versao jdk baixado)"
-            Obs: no exemplo estipulado o dominío do jdk é o padrão.
+            Obs: No exemplo, o diretorio estipulado para o jdk é o padrão.
 Executando
-    Vá para src/tela/TelaPrincipal.java e aperte"F5"
+   Selecione o arquivo no Explorador, aperte"F5" e selecione 'JAVA'
