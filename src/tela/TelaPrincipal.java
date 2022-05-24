@@ -56,7 +56,7 @@ public class TelaPrincipal {
 	
 	public void cadastrar()
 	{
-		for(int novoNumero = 0; novoNumero<=5; novoNumero++)
+		for(int novoNumero = 0; novoNumero<=92; novoNumero++)
 		{
 			Numero numero = new Numero();
 			long[] fibonacciCache  = new long[novoNumero+1];
