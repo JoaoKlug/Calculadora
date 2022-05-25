@@ -108,7 +108,7 @@ public class TelaPrincipal {
 			}
 		}
 	    if(encontrado == false)	 
-	    	System.out.println("NUMERO"+ " " +numeroEntrada + " " + "NAO ENCONTRADO");
+	    	System.out.println("* NUMERO"+ " " +numeroEntrada + " " + "NAO ENCONTRADO *");
 
 	}
 	
@@ -127,13 +127,13 @@ public class TelaPrincipal {
 			if(numero.getNumero() == numeroEntrada)
 			{
 				numeroBD.remover(numeroEntrada);
-				System.out.println("NUMERO"+ " " +numeroEntrada + " " + "REMOVIDO");
+				System.out.println("* NUMERO"+ " " +numeroEntrada + " " + "REMOVIDO *");
 				encontrado = true;
 				break;
 			}
 		}
 	    if(encontrado == false)	 
-	    	System.out.println("NUMERO"+ " " +numeroEntrada + " " + "NAO ENCONTRADO");
+	    	System.out.println("* NUMERO"+ " " +numeroEntrada + " " + "NAO ENCONTRADO *");
 			
 	}
 	
