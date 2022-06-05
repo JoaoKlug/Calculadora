@@ -1,5 +1,6 @@
 package tela;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Scanner;
 
@@ -11,24 +12,29 @@ public class TelaPrincipal {
 
 	private Scanner lerTeclado;
 	private NumeroBD numeroBD;
+	private ArrayList<Long> fibonacciCache;
+	private	ArrayList<Long> fatorialCache;
 	
 	public TelaPrincipal(){
 		numeroBD = new NumeroBD();
 		lerTeclado = new Scanner(System.in);
+		fibonacciCache = new ArrayList<Long>();
+		fatorialCache = new ArrayList<Long>();
 	}
 	
 	public static void main(String[] args) {
 		new TelaPrincipal().executar();
 	}
 	
-	private final int _LISTAR_ = 1;
-	private final int _REMOVER_ = 2;
-	private final int _BUSCAR_ = 3;
+	private final int _CADASTRAR_ = 1;
+	private final int _LISTAR_ = 2;
+	private final int _REMOVER_ = 3;
+	private final int _BUSCAR_ = 4;
 	private final int _SAIR_ = 0;
 	
 	public void executar()
 	{
-		this.cadastrar();
+		this.cadastroAutomatico();
 		
 		int opcaoEscolhida = 1;
 		do
@@ -37,7 +43,9 @@ public class TelaPrincipal {
 			System.out.print("ESCOLHA UMA DAS OPCOES A CIMA: ");
 				opcaoEscolhida = lerTeclado.nextInt();
 			
-			if(opcaoEscolhida == _LISTAR_)
+			if(opcaoEscolhida == _CADASTRAR_)
+				this.cadastrar();
+			else if(opcaoEscolhida == _LISTAR_)
 				this.listar();
 			else if(opcaoEscolhida == _REMOVER_)
 				this.remover();
@@ -54,24 +62,43 @@ public class TelaPrincipal {
 		}while(opcaoEscolhida!=0);
 	}
 	
+	public void cadastroAutomatico()
+	{
+		for(int novoNumero = 0; novoNumero<=20; novoNumero++)
+		{
+			setNumero(novoNumero);
+		}
+		
+	}
+	
 	public void cadastrar()
 	{
-		for(int novoNumero = 0; novoNumero<=100; novoNumero++)
-		{
-			Numero numero = new Numero();
-			long[] fibonacciCache  = new long[novoNumero+1];
-			long[] fatorialCache = new long[novoNumero+1];
+		System.out.println();
+		System.out.println("---- CADASTRAR NUMERO ----");
+		System.out.println("** O intervalo de 0 a 20 foi cadastrado automaticamente **");
+		
+		System.out.print("Digite-o: ");
+			int novoNumero = lerTeclado.nextInt();
 			
-			numero.setNumero(novoNumero);
-			numero.setPrimo(Funcoes.primo(novoNumero));
-			numero.setFibonacci(Funcoes.fibonacci(novoNumero,fibonacciCache));
-			numero.setRaiz(Funcoes.raiz(novoNumero, 0));
-			numero.setFatorial(Funcoes.fatorial(novoNumero, fatorialCache));
-			numero.setBinario(Funcoes.binario(novoNumero));
-			numero.setHexadecimal(Funcoes.hexadecimal(novoNumero));
+			Collection<Numero> registros = numeroBD.registros();
 			
-			numeroBD.cadastrar(numero);
-		}
+			boolean encontrado = false;	
+			for(Numero numero : registros)
+			{	
+				if(numero.getNumero() == novoNumero)
+				{
+					encontrado = true;
+					break;
+				}
+			}
+		    if(encontrado == false)
+		    {
+				setNumero(novoNumero);
+				System.out.println("*"+novoNumero+ " " +"CADASTRADO*");
+		    }
+		    else
+		    	System.out.println("*"+novoNumero+ " " +"JA ESTA CADASTRADO*" );
+		
 	}
 	
 	public void listar()
@@ -108,7 +135,7 @@ public class TelaPrincipal {
 			}
 		}
 	    if(encontrado == false)	 
-	    	System.out.println("* NUMERO"+ " " +numeroEntrada + " " + "NAO ENCONTRADO *");
+	    	System.out.println("*NUMERO"+ " " +numeroEntrada + " " + "NAO ENCONTRADO*");
 
 	}
 	
@@ -127,13 +154,13 @@ public class TelaPrincipal {
 			if(numero.getNumero() == numeroEntrada)
 			{
 				numeroBD.remover(numeroEntrada);
-				System.out.println("* NUMERO"+ " " +numeroEntrada + " " + "REMOVIDO *");
+				System.out.println("*NUMERO"+ " " +numeroEntrada + " " + "REMOVIDO*");
 				encontrado = true;
 				break;
 			}
 		}
 	    if(encontrado == false)	 
-	    	System.out.println("* NUMERO"+ " " +numeroEntrada + " " + "NAO ENCONTRADO *");
+	    	System.out.println("*NUMERO"+ " " +numeroEntrada + " " + "NAO ENCONTRADO*");
 			
 	}
 	
@@ -152,10 +179,25 @@ public class TelaPrincipal {
 	{
 		System.out.println();
 		System.out.println("---- OPCOES ----");
-		System.out.println("1-LISTAR");
-		System.out.println("2-REMOVER");
-		System.out.println("3-BUSCAR");
+		System.out.println("1-CADASTRAR");
+		System.out.println("2-LISTAR");
+		System.out.println("3-REMOVER");
+		System.out.println("4-BUSCAR");
 		System.out.println("0-SAIR");
 		System.out.println();
+	}
+	private void setNumero(int novoNumero)
+	{
+		Numero numero = new Numero();
+		
+		numero.setNumero(novoNumero);
+		numero.setPrimo(Funcoes.primo(novoNumero));
+		numero.setFibonacci(Funcoes.fibonacci(novoNumero,fibonacciCache));
+		numero.setRaiz(Funcoes.raiz(novoNumero, 0));
+		numero.setFatorial(Funcoes.fatorial(novoNumero, fatorialCache));
+		numero.setBinario(Funcoes.binario(novoNumero));
+		numero.setHexadecimal(Funcoes.hexadecimal(novoNumero));
+			
+		numeroBD.cadastrar(numero);
 	}
 }

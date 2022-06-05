@@ -1,5 +1,7 @@
 package funcoes;
 
+import java.util.ArrayList;
+
 public class Funcoes {
 
 	public static boolean primo(int numero)
@@ -25,21 +27,35 @@ public class Funcoes {
 	}
 	
 	
-	public static long fibonacci(int numero, long []fibonacciCache)
+	public static Long fibonacci(int numero, ArrayList<Long>fibonacciCache)
 	{
-		long fibonacci = 0;
+		Long fibonacci = (long)0;
 		
 		if(numero>92 || numero==0)
+		{
+			if(fibonacciCache.size() == 0)
+			{
+				fibonacciCache.add(fibonacci);
+			}
 			return fibonacci;
+		}
+			
 		if(numero == 1)
+		{
+			if(fibonacciCache.size() == 1)
+			{
+				fibonacciCache.add(fibonacci+1);
+			}
 			return fibonacci+1;
+		}
+			
 		
-		if(fibonacciCache[numero] != 0)
-			return fibonacciCache[numero];
+		if(fibonacciCache.size()> numero)
+			return fibonacciCache.get(numero);
 		
 		fibonacci = (fibonacci(numero-1, fibonacciCache) + fibonacci(numero-2, fibonacciCache));
-		fibonacciCache[numero] = fibonacci;
-		
+		fibonacciCache.add(fibonacci);
+				
 		return fibonacci;
 	}
 	
@@ -77,20 +93,26 @@ public class Funcoes {
 	}	
 	
 	
-	public static long fatorial(int numero, long[]fatorialCache)
+	public static Long fatorial(int numero, ArrayList<Long>fatorialCache)
 	{
-		long fatorial = 0;
+		Long fatorial = (long)0;
 		
 		if(numero>20)
 			return fatorial;
 		if(numero<=1)
+		{
+			if(fatorialCache.size() <= 1)
+			{
+				fatorialCache.add(fatorial+1);
+			}
 			return fatorial+1;
-		
-		if(fatorialCache[numero] != 0)
-			return fatorialCache[numero];
+		}
+			
+		if(fatorialCache.size()> numero)
+			return fatorialCache.get(numero);
 		
 		fatorial = numero*fatorial(numero-1,fatorialCache);
-		fatorialCache[numero] = fatorial;
+		fatorialCache.add(fatorial);
 		
 		return fatorial;
 	}
