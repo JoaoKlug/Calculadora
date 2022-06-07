@@ -67,11 +67,11 @@ public class Funcoes {
 		if(provaReal == numero || Math.abs(provaReal-numero)<0.00001)
 			return raiz;
 			
-		else if(provaReal>numero)
-			raiz = decimalRaiz(numero, raiz-1, raiz);
-		
-		else
+		if(provaReal<numero)
 			raiz = raiz(numero, raiz+1);
+		
+		if(provaReal>numero)
+			raiz = decimalRaiz(numero, raiz-1, raiz);
 			
 		return raiz;
 	}

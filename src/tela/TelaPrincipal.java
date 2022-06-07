@@ -78,9 +78,9 @@ public class TelaPrincipal {
 		System.out.print("Digite-o: ");
 			int novoNumero = lerTeclado.nextInt();
 			
-			boolean encontrado = encontrarRegistro(novoNumero);	
+			boolean numeroEncontrado = encontrarRegistro(novoNumero);	
 			
-		    if(encontrado == false)
+		    if(numeroEncontrado == false)
 		    {
 				setNumero(novoNumero);
 				System.out.println("*"+novoNumero+ " " +"CADASTRADO*");
@@ -110,9 +110,9 @@ public class TelaPrincipal {
         System.out.print("Digite-o: ");
 			int numeroEntrada = lerTeclado.nextInt();
         
-		boolean encontrado = encontrarRegistro(numeroEntrada);
+		boolean numeroEncontrado = encontrarRegistro(numeroEntrada);
 		
-	    if(encontrado == true)	 
+	    if(numeroEncontrado == true)	 
 	    	printNumero(numeroBD.buscar(numeroEntrada+1));
 	    else
 	    	System.out.println("*NUMERO"+ " " +numeroEntrada + " " + "NAO ENCONTRADO*");
@@ -126,9 +126,9 @@ public class TelaPrincipal {
 		System.out.print("Digite-o: ");
 			int numeroEntrada = lerTeclado.nextInt();
 		
-		boolean encontrado = encontrarRegistro(numeroEntrada);	
+		boolean numeroEncontrado = encontrarRegistro(numeroEntrada);	
 		
-		if(encontrado == true)
+		if(numeroEncontrado == true)
 		{
 			numeroBD.remover(numeroEntrada+1);
 			System.out.println("*NUMERO"+ " " +numeroEntrada + " " + "REMOVIDO*");
@@ -158,16 +158,16 @@ public class TelaPrincipal {
 	{
 		Collection<Numero> registros = numeroBD.listar();
 		
-		boolean encontrado = false;	
+		boolean numeroEncontrado = false;	
 		for(Numero numero : registros)
 		{	
 			if(numero.getNumero() == numeroEntrada)
 			{
-				encontrado = true;
+				numeroEncontrado = true;
 				break;
 			}
 		}
-		return encontrado;
+		return numeroEncontrado;
 	}
 	
 	private void printNumero(Numero numero)
