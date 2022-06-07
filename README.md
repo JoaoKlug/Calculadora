@@ -10,4 +10,4 @@ Configurando VsCode
              "java.jdt.ls.java.home": "C:\\Program Files\\Java\\jdk-18.(versao jdk baixado)"
             Obs: No exemplo, o diretorio estipulado para o jdk é o padrão.
 Executando
-   Selecione o arquivo no Explorador, aperte"F5" e selecione 'JAVA'
+   Selecione o arquivo "src/tela/TelaPrincipal.java" no Explorador e aperte"F5".

@@ -7,6 +7,7 @@ import numero.Numero;
 
 public class NumeroBD {
 
+	private int ultimoID;
 	private HashMap<Integer,Numero> numeroBD;
 	
 	public NumeroBD()
@@ -16,12 +17,19 @@ public class NumeroBD {
 	
 	public void cadastrar(Numero numero)
 	{
-		numeroBD.put(numero.getNumero(), numero);
+		ultimoID += 1;
+		numero.setId(ultimoID);
+		numeroBD.put(ultimoID, numero);
 	}
 	
-	public Collection<Numero> registros()
+	public Collection<Numero> listar()
 	{
 		return numeroBD.values();
+	}
+	
+	public Numero buscar(int numero)
+	{
+		return numeroBD.get(numero);
 	}
 	
 	public void remover(int numero)

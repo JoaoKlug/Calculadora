@@ -2,6 +2,7 @@ package numero;
 
 public class Numero {
 	
+	private int id;
 	private int numero;
 	private boolean primo;
 	private long fibonacci;
@@ -10,6 +11,14 @@ public class Numero {
 	private long binario;
 	private String hexadecimal;
 
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public int getNumero() {
 		return numero;
 	}
