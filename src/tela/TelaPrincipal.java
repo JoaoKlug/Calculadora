@@ -187,8 +187,8 @@ public class TelaPrincipal {
 		System.out.println("---- OPCOES ----");
 		System.out.println("1-CADASTRAR");
 		System.out.println("2-LISTAR");
-		System.out.println("3-REMOVER");
-		System.out.println("4-BUSCAR");
+		System.out.println("3-BUSCAR");
+		System.out.println("4-REMOVER");
 		System.out.println("0-SAIR");
 		System.out.println();
 	}
