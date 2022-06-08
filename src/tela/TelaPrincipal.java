@@ -113,7 +113,7 @@ public class TelaPrincipal {
 		boolean numeroEncontrado = encontrarRegistro(numeroEntrada);
 		
 	    if(numeroEncontrado == true)	 
-	    	printNumero(numeroBD.buscar(numeroEntrada+1));
+	    	printNumero(numeroBD.buscar(getId(numeroEntrada)));
 	    else
 	    	System.out.println("*NUMERO"+ " " +numeroEntrada + " " + "NAO ENCONTRADO*");
 
@@ -130,7 +130,7 @@ public class TelaPrincipal {
 		
 		if(numeroEncontrado == true)
 		{
-			numeroBD.remover(numeroEntrada+1);
+			numeroBD.remover(getId(numeroEntrada));
 			System.out.println("*NUMERO"+ " " +numeroEntrada + " " + "REMOVIDO*");
 		}
 		else
@@ -147,7 +147,7 @@ public class TelaPrincipal {
 		numero.setPrimo(Funcoes.primo(novoNumero));
 		numero.setFibonacci(Funcoes.fibonacci(novoNumero,fibonacciCache));
 		numero.setRaiz(Funcoes.raiz(novoNumero, 0));
-		numero.setFatorial(Funcoes.fatorial(novoNumero, fatorialCache));
+		numero.setFatorial(Funcoes.fatorial(novoNumero,fatorialCache));
 		numero.setBinario(Funcoes.binario(novoNumero));
 		numero.setHexadecimal(Funcoes.hexadecimal(novoNumero));
 			
@@ -168,6 +168,21 @@ public class TelaPrincipal {
 			}
 		}
 		return numeroEncontrado;
+	}
+	private int getId(int numeroEntrada)
+	{
+		Collection<Numero> registros = numeroBD.listar();
+		
+		int id = 0;	
+		for(Numero numero : registros)
+		{	
+			if(numero.getNumero() == numeroEntrada)
+			{
+				id=numero.getId();
+				return id;
+			}
+		}
+		return id;
 	}
 	
 	private void printNumero(Numero numero)
