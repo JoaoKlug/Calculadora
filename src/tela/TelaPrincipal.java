@@ -64,7 +64,7 @@ public class TelaPrincipal {
 	{
 		for(int novoNumero = 0; novoNumero<=20; novoNumero++)
 		{
-			setNumero(novoNumero);
+			numeroBD.cadastrar(setNumero(novoNumero));
 		}
 		
 	}
@@ -82,7 +82,7 @@ public class TelaPrincipal {
 			
 		    if(numeroEncontrado == false)
 		    {
-				setNumero(novoNumero);
+				numeroBD.cadastrar(setNumero(novoNumero));
 				System.out.println("*"+novoNumero+ " " +"CADASTRADO*");
 		    }
 		    else
@@ -139,7 +139,7 @@ public class TelaPrincipal {
 	}
 	
 	
-	private void setNumero(int novoNumero)
+	private Numero setNumero(int novoNumero)
 	{
 		Numero numero = new Numero();
 		
@@ -151,7 +151,7 @@ public class TelaPrincipal {
 		numero.setBinario(Funcoes.binario(novoNumero));
 		numero.setHexadecimal(Funcoes.hexadecimal(novoNumero));
 			
-		numeroBD.cadastrar(numero);
+		return numero;
 	}
 	
 	private boolean encontrarRegistro(int numeroEntrada)
