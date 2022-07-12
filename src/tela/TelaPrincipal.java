@@ -18,8 +18,8 @@ public class TelaPrincipal {
 	public TelaPrincipal(){
 		numeroBD = new NumeroBD();
 		lerTeclado = new Scanner(System.in);
-		fibonacciCache = new ArrayList<Long>();
-		fatorialCache = new ArrayList<Long>();
+		fibonacciCache = new ArrayList<>();
+		fatorialCache = new ArrayList<>();
 	}
 	
 	public static void main(String[] args) {
